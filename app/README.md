@@ -7,6 +7,19 @@ To start watcher `$ gulp`
 SCSS global will use `$ gulp js-dist`
 
 ## Plugins
-reflect-metadata [https://www.npmjs.com/package/reflect-metadata]
+reflect-metadata - [https://www.npmjs.com/package/reflect-metadata]  
+RxJS-Observable -  [http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html]  
+platform-browser-dynamic - [http://stackoverflow.com/questions/38407604/what-is-angular-platform-browser]  
+
+**@angular/platform-browser**  
+It contains code shared for browser execution (DOM thread, WebWorker)
+Ahead-of-Time pre-compiled version of application being sent to the browser. Which usually means a significantly smaller package being sent to the browser.
+
+**@angular/platform-browser-dynamic**  
+It contains the client side code that processes templates (bindings, components, ...) and reflective dependency injection.
+Uses Just-in-Time compiler and make's application compile on client-side.
+
+**PlatformBootstrapDynamic**  
+[http://ngmigrate.telerik.com/bootstrapping-in-angular-2]
 
 
