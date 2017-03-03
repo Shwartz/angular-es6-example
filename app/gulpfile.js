@@ -1,4 +1,4 @@
-"use strict";
+package.json"use strict";
 
 const PATH = require("path");
 const gulp = require('gulp');
