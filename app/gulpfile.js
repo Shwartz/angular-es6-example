@@ -93,7 +93,7 @@ gulp.task('js-dist', function () {
  */
 gulp.task('default', ['watch']);
 
-gulp.task('watch', ['sass-dev', 'js-dev'], function () {
+gulp.task('watch', ['sass-dev', 'js-dev', 'sass-cmp'], function () {
 	gulp.watch(PATHS.sass, ['sass-dev']);
 	gulp.watch(PATHS.es6, ['js-dev']);
 	gulp.watch(PATHS.sassComp, ['sass-cmp']);

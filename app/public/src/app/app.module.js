@@ -6,3 +6,4 @@ import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 
 import {App} from './app';
+import {Heading} from './components/heading/heading';
