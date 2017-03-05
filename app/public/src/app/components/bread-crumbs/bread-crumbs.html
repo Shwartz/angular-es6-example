@@ -1,0 +1,17 @@
+<div class="bread-crumbs-item">
+	<a class="bread-crumbs-item-link" routerLink="/list" routerLinkActive="bread-crumbs-item_active">Select Book</a>
+</div>
+<div class="bread-crumbs-item">
+	<a class="bread-crumbs-item-link"
+	   routerLink="/checkout"
+	   routerLinkActive="bread-crumbs-item_active"
+	   [tabindex]="isCheckoutDisabled() ? -1 : 0"
+	   [attr.disabled]="isCheckoutDisabled() ? true : null">Review Shopping Cart</a>
+</div>
+<div class="bread-crumbs-item">
+	<a class="bread-crumbs-item-link"
+	   routerLink="/payment"
+	   routerLinkActive="bread-crumbs-item_active"
+	   [tabindex]="isPaymentDisabled() ? -1 : 0"
+	   [attr.disabled]="isPaymentDisabled() ? true : null">Payment</a>
+</div>

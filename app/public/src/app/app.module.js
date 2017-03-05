@@ -7,6 +7,7 @@ import {FormsModule} from '@angular/forms';
 
 import {App} from './app';
 import {Heading} from './components/heading/heading';
+import {BreadCrumbs} from './components/bread-crumbs/bread-crumbs';
 
 const routes = [
 
@@ -16,6 +17,7 @@ const routes = [
 	declarations: [
 		App,
 		Heading,
+		BreadCrumbs,
 	],
 	bootstrap: [
 		App

@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.bread-crumbs-item {
+  display: inline-block;
+}
+
+.bread-crumbs-item-link {
+  color: #333;
+}
+
+.bread-crumbs-item-link[disabled] {
+  pointer-events: none;
+  cursor: default;
+  color: #ccc;
+}
+
+.bread-crumbs-item + .bread-crumbs-item {
+  margin-left: 5px;
+}
+
+.bread-crumbs-item + .bread-crumbs-item:before {
+  content: ">";
+  position: relative;
+  margin-right: 9px;
+}
+
+.bread-crumbs-item_active {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=bread-crumbs.css.map */

@@ -1,0 +1,33 @@
+:host {
+	display: block;
+}
+
+.bread-crumbs {
+	&-item {
+		display: inline-block;
+
+		&-link {
+			color: #333;
+
+			&[disabled] {
+				pointer-events: none;
+				cursor: default;
+				color: #ccc;
+			}
+		}
+
+		& + & {
+			margin-left: 5px;
+
+			&:before {
+				content: ">";
+				position: relative;
+				margin-right: 9px;
+			}
+		}
+
+		&_active {
+			font-weight: bold;
+		}
+	}
+}
