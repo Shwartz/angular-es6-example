@@ -96,5 +96,6 @@ gulp.task('default', ['watch']);
 gulp.task('watch', ['sass-dev', 'js-dev'], function () {
 	gulp.watch(PATHS.sass, ['sass-dev']);
 	gulp.watch(PATHS.es6, ['js-dev']);
+	gulp.watch(PATHS.sassComp, ['sass-cmp']);
 	// Other watchers can also be added here
 });
