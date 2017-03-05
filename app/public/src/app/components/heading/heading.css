@@ -1,0 +1,16 @@
+.heading {
+  position: relative;
+  margin: 0 2.5% 32px 1.6%;
+}
+
+.heading-title {
+  font-size: 48px;
+  padding: 10px 0;
+}
+
+.heading-description {
+  font-size: 24px;
+  font-style: italic;
+}
+
+/*# sourceMappingURL=heading.css.map */
