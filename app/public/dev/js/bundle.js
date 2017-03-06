@@ -95221,7 +95221,7 @@
 /* 135 */
 /***/ function(module, exports) {
 
-	module.exports = "<a routerLink=\"/checkout\">\n\t<cart [count]=\"cartService.count()\"></cart>\n</a>\n<book *ngFor=\"let book of books | async\"\n\t  [meta]=\"book\"\n\t  [selected]=\"cartService.isIn(book)\"\n\t  (onClick)=\"cartService.add(book)\"\n\t  (onRemoveClick)=\"cartService.remove(book)\"></book>"
+	module.exports = "<!--<a routerLink=\"/checkout\">\n\t<cart [count]=\"cartService.count()\"></cart>\n</a>-->\n<!--\n<book *ngFor=\"let book of books | async\"\n\t  [meta]=\"book\"\n\t  [selected]=\"cartService.isIn(book)\"\n\t  (onClick)=\"cartService.add(book)\"\n\t  (onRemoveClick)=\"cartService.remove(book)\"></book>-->\n"
 
 /***/ },
 /* 136 */
