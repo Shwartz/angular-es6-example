@@ -13,6 +13,7 @@ import {List} from './components/list/list';
 import {Cart} from './components/cart/cart';
 import {Book} from './components/book/book';
 import {Payment} from './components/payment/payment';
+import {Checkout} from './components/checkout/checkout';
 
 const routes = [
     {
@@ -34,7 +35,8 @@ const routes = [
 		List,
 		Cart,
 		Book,
-		Payment
+		Payment,
+		Checkout
 	],
 	bootstrap: [
 		App

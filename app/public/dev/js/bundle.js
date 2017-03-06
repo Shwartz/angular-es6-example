@@ -61636,6 +61636,8 @@
 	
 	var _payment = __webpack_require__(143);
 	
+	var _checkout = __webpack_require__(147);
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var routes = [{
@@ -61648,7 +61650,7 @@
 	}];
 	
 	var AppModule = exports.AppModule = (_dec = (0, _core.NgModule)({
-		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List, _cart2.Cart, _book.Book, _payment.Payment],
+		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List, _cart2.Cart, _book.Book, _payment.Payment, _checkout.Checkout],
 		bootstrap: [_app.App],
 		imports: [_router.RouterModule.forRoot(routes), _platformBrowser.BrowserModule, _common.CommonModule, _forms.FormsModule, _http.HttpModule],
 		providers: [_cart.CartService]
@@ -95578,6 +95580,273 @@
 /***/ function(module, exports) {
 
 	module.exports = ".payment {\n  width: 210px;\n  margin: 80px auto 24px;\n}\n\n.payment input {\n  display: block;\n  width: 200px;\n  padding: 8px;\n  margin-top: 8px;\n}\n\n.payment select {\n  display: block;\n  /*width: 200px;\n\t\tpadding: 8px;\n\t\tmargin-top: 8px;\n\t\t*/\n  margin-bottom: 16px;\n  width: 224px;\n  font-size: 18px;\n  margin-top: 16px;\n}\n\n.payment input[type=submit] {\n  position: relative;\n  width: 200px;\n  top: -4px;\n  display: inline-block;\n  margin: 32px 0 0;\n  padding: 8px 16px;\n  left: 10px;\n  bottom: 10px;\n  background: #def9d2;\n  cursor: pointer;\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  font-size: 12px;\n  transition: color 0.2s, background 0.2s;\n  text-decoration: none;\n}\n\n.payment input[type=submit]:hover {\n  background-color: #bfd6b4;\n}\n\n.payment-total {\n  font-size: 24px;\n}\n\n.payment-form .ng-valid[required], .payment-form .ng-valid.required {\n  border-left: 5px solid #42A948;\n  /* green */\n}\n\n.payment-form .ng-invalid:not(form) {\n  border-left: 5px solid #a94442;\n  /* red */\n}\n\n.payment-done {\n  width: 600px;\n  margin: 80px auto 24px;\n  font-size: 24px;\n  text-align: center;\n}\n\n/*# sourceMappingURL=payment.css.map */\n"
+
+/***/ },
+/* 147 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Checkout = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _dec, _class;
+	
+	var _core = __webpack_require__(82);
+	
+	var _router = __webpack_require__(90);
+	
+	var _cart = __webpack_require__(129);
+	
+	var _item = __webpack_require__(148);
+	
+	var _cookie = __webpack_require__(144);
+	
+	var _memoize = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../services/memoize.service\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var path = 'public/src/app/components/checkout/';
+	
+	/*import headerTemplate from 'raw-loader!./checkout.html';
+	 import headerStyle from 'raw-loader!./checkout.css';*/
+	
+	var Checkout = exports.Checkout = (_dec = (0, _core.Component)({
+		selector: 'checkout',
+		template: __webpack_require__(150),
+		styles: [__webpack_require__(151)],
+		queries: {
+			itemsComponents: new _core.ViewChildren(_item.CheckoutItem)
+		}
+	}), _dec(_class = function () {
+		_createClass(Checkout, null, [{
+			key: 'parameters',
+			get: function get() {
+				return [[_cart.CartService], [_router.Router]];
+			}
+		}]);
+	
+		function Checkout($cartService, $router) {
+			_classCallCheck(this, Checkout);
+	
+			this.items = this.items;
+			this.total = this.total;
+			this.totalCurrency = this.totalCurrency;
+			this.cartService = this.cartService;
+			this.router = this.router;
+			this.cookies = new _cookie.Cookies();
+			this.memoize = new _memoize.Memoize();
+	
+			this.cartService = $cartService;
+			this.router = $router;
+			this.items = $cartService.get();
+		}
+	
+		_createClass(Checkout, [{
+			key: 'ngOnInit',
+			value: function ngOnInit() {
+				if (this.cartService.isEmpty()) {
+					this.router.navigate(['/list']);
+				}
+			}
+		}, {
+			key: 'ngAfterViewInit',
+			value: function ngAfterViewInit() {
+				var _this = this;
+	
+				this.itemsComponents.changes.subscribe(function () {
+					return setTimeout(_this.updateTotal.bind(_this));
+				});
+				this.updateTotal();
+			}
+		}, {
+			key: 'remove',
+			value: function remove(item) {
+				this.items = this.cartService.remove(item);
+			}
+		}, {
+			key: 'updateTotal',
+			value: function updateTotal() {
+				this.total = this.itemsComponents.map(function (item) {
+					return item.getTotal();
+				}).reduce(function (res, cur) {
+					return res + cur;
+				}, 0);
+				this.totalCurrency = this.makeCurrency(this.total);
+			}
+		}, {
+			key: 'makeCurrency',
+			value: function makeCurrency(total) {
+				return '\xA3 ' + total.toFixed(2);
+			}
+		}, {
+			key: 'setPrice',
+			value: function setPrice() {
+				this.cookies.createCookie('totalCurrency', this.totalCurrency, 1);
+				//this.memoize.set('totalCurrency', this.totalCurrency);
+			}
+		}]);
+
+		return Checkout;
+	}()) || _class);
+
+/***/ },
+/* 148 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.CheckoutItem = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+	
+	var _core = __webpack_require__(82);
+	
+	function _initDefineProp(target, property, descriptor, context) {
+		if (!descriptor) return;
+		Object.defineProperty(target, property, {
+			enumerable: descriptor.enumerable,
+			configurable: descriptor.configurable,
+			writable: descriptor.writable,
+			value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+		});
+	}
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+		var desc = {};
+		Object['ke' + 'ys'](descriptor).forEach(function (key) {
+			desc[key] = descriptor[key];
+		});
+		desc.enumerable = !!desc.enumerable;
+		desc.configurable = !!desc.configurable;
+	
+		if ('value' in desc || desc.initializer) {
+			desc.writable = true;
+		}
+	
+		desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+			return decorator(target, property, desc) || desc;
+		}, desc);
+	
+		if (context && desc.initializer !== void 0) {
+			desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+			desc.initializer = undefined;
+		}
+	
+		if (desc.initializer === void 0) {
+			Object['define' + 'Property'](target, property, desc);
+			desc = null;
+		}
+	
+		return desc;
+	}
+	
+	function _initializerWarningHelper(descriptor, context) {
+		throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+	}
+	
+	/*import headerTemplate from 'raw-loader!./item.html';
+	 import headerStyle  from 'raw-loader!./item.css';*/
+	
+	var path = 'public/src/app/components/checkout/item/';
+	var deliveryPrices = {
+		slow: 0.2,
+		medium: 0.3,
+		fast: 0.5
+	};
+	
+	var CheckoutItem = exports.CheckoutItem = (_dec = (0, _core.Component)({
+		selector: 'checkout-item',
+		template: __webpack_require__(149),
+		styles: [__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./item.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))]
+	}), _dec2 = (0, _core.Input)(), _dec3 = (0, _core.Input)(), _dec4 = (0, _core.Output)(), _dec5 = (0, _core.Output)(), _dec(_class = (_class2 = function () {
+		function CheckoutItem() {
+			_classCallCheck(this, CheckoutItem);
+	
+			_initDefineProp(this, 'item', _descriptor, this);
+	
+			_initDefineProp(this, 'index', _descriptor2, this);
+	
+			_initDefineProp(this, 'onTotalChange', _descriptor3, this);
+	
+			_initDefineProp(this, 'onRemoveClick', _descriptor4, this);
+	
+			this.delivery = 'medium';
+		}
+	
+		_createClass(CheckoutItem, [{
+			key: 'getDeliveryPrice',
+			value: function getDeliveryPrice() {
+				return deliveryPrices[this.delivery];
+			}
+		}, {
+			key: 'getTotal',
+			value: function getTotal() {
+				return parseInt(this.item.price) + this.getDeliveryPrice();
+			}
+		}, {
+			key: 'getPriceCurrency',
+			value: function getPriceCurrency(item) {
+				return '\xA3 ' + item;
+			}
+		}, {
+			key: 'getTotalCurrency',
+			value: function getTotalCurrency() {
+				return '\xA3 ' + this.getTotal().toFixed(2);
+			}
+		}]);
+	
+		return CheckoutItem;
+	}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'item', [_dec2], {
+		enumerable: true,
+		initializer: function initializer() {
+			return this.item;
+		}
+	}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'index', [_dec3], {
+		enumerable: true,
+		initializer: function initializer() {
+			return this.index;
+		}
+	}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'onTotalChange', [_dec4], {
+		enumerable: true,
+		initializer: function initializer() {
+			return new _core.EventEmitter();
+		}
+	}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'onRemoveClick', [_dec5], {
+		enumerable: true,
+		initializer: function initializer() {
+			return new _core.EventEmitter();
+		}
+	})), _class2)) || _class);
+
+/***/ },
+/* 149 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n<checkout-item *ngFor=\"let item of items; let i = index\"\n\t\t\t   [item]=\"item\"\n\t\t\t   [index]=\"i\"\n\t\t\t   (onTotalChange)=\"updateTotal()\"\n\t\t\t   (onRemoveClick)=\"remove(item)\"></checkout-item>\n<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n\n"
+
+/***/ },
+/* 150 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n<checkout-item *ngFor=\"let item of items; let i = index\"\n\t\t\t   [item]=\"item\"\n\t\t\t   [index]=\"i\"\n\t\t\t   (onTotalChange)=\"updateTotal()\"\n\t\t\t   (onRemoveClick)=\"remove(item)\"></checkout-item>\n<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n\n"
+
+/***/ },
+/* 151 */
+/***/ function(module, exports) {
+
+	module.exports = ".checkout-summary {\n  text-align: right;\n  margin: 20px 0;\n}\n\n.checkout-summary span {\n  display: inline-block;\n  font-size: 24px;\n}\n\n.checkout-summary a {\n  position: relative;\n  top: -4px;\n  margin-right: 12px;\n  display: inline-block;\n  margin-left: 32px;\n  padding: 8px 16px;\n  left: 10px;\n  bottom: 10px;\n  background: #def9d2;\n  cursor: pointer;\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  font-size: 12px;\n  transition: color 0.2s, background 0.2s;\n  text-decoration: none;\n}\n\n.checkout-summary a:hover {\n  background-color: #bfd6b4;\n}\n\n/*# sourceMappingURL=checkout.css.map */\n"
 
 /***/ }
 /******/ ]);

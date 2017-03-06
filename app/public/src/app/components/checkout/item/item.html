@@ -1,0 +1,32 @@
+<div class="checkoutItem">
+	<!--<div class="checkoutItem-cell">{{index}}</div>-->
+	<div class="checkoutItem-cell">
+		<div class="checkoutItem-image">
+			<img src="/assets/img/{{item.img}}">
+		</div>
+	</div>
+	<div class="checkoutItem-cell checkoutItem-name">
+		<h1>{{item.title}}</h1>
+		<p>{{item.description}}</p>
+	</div>
+	<div class="checkoutItem-cell checkoutItem-chooseDelivery">
+		<select name="delivery" [(ngModel)]="delivery" (change)="onTotalChange.emit()">
+			<option value="slow">Slow - 2%</option>
+			<option value="medium">Medium - 3%</option>
+			<option value="fast">Fast - 5%</option>
+		</select>
+	</div>
+	<div class="checkoutItem-cell checkoutItem-deliveryPrice">
+		<span>Delivery</span>
+		{{getDeliveryPrice()}}
+	</div>
+	<div class="checkoutItem-cell checkoutItem-bookPrice">
+		<span>Price</span>
+		{{getPriceCurrency(item.price)}}
+	</div>
+	<div class="checkoutItem-cell checkoutItem-total">
+		<span>Total</span>
+		{{getTotalCurrency()}}
+	</div>
+	<div class="checkoutItem-cell checkoutItem-remove" (click)="onRemoveClick.emit()">Remove</div>
+</div>

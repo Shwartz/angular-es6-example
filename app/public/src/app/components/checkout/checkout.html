@@ -1,0 +1,14 @@
+<div class="checkout-summary">
+	<span>Total: {{totalCurrency}}</span>
+	<a routerLink="/payment" (click)="setPrice()">BUY</a>
+</div>
+<checkout-item *ngFor="let item of items; let i = index"
+			   [item]="item"
+			   [index]="i"
+			   (onTotalChange)="updateTotal()"
+			   (onRemoveClick)="remove(item)"></checkout-item>
+<div class="checkout-summary">
+	<span>Total: {{totalCurrency}}</span>
+	<a routerLink="/payment" (click)="setPrice()">BUY</a>
+</div>
+

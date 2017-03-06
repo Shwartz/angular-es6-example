@@ -1,0 +1,67 @@
+.checkoutItem {
+	display: flex;
+	align-items: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f2f2f2;
+
+	&:first-child {
+		border-top: 1px solid #f2f2f2;
+	}
+
+	&-cell {
+		padding: 10px;
+
+		&:nth-of-type(3) {
+			flex-shrink: 0;
+		}
+	}
+
+	&-image {
+		width: 80px;
+	}
+
+	&-name {
+		max-width: 800px;
+	}
+
+	h1 {
+		margin-bottom: 24px;
+		font-size: 24px;
+	}
+
+	p {
+		font-size: 14px;
+		line-height: 1.2em;
+	}
+
+	&-chooseDelivery, &-deliveryPrice, &-bookPrice, &-total{
+		/*align-self: flex-start;*/
+		text-align: center;
+		min-width: 86px;
+
+		span {
+			font-size: 14px;
+			font-weight: bold;
+			margin-bottom: 8px;
+			display: block;
+		}
+	}
+
+	&-remove {
+		margin-left: 32px;
+		padding: 8px 16px;
+		left: 10px;
+		bottom: 10px;
+		background: #fff;
+		cursor: pointer;
+		border-radius: 4px;
+		border: 1px solid #ccc;
+		font-size: 12px;
+		transition: color 0.2s, background 0.2s;
+
+		&:hover {
+			background-color: #e0b08c;
+		}
+	}
+}
