@@ -1,9 +1,8 @@
-<!--<a routerLink="/checkout">
+<a routerLink="/checkout">
 	<cart [count]="cartService.count()"></cart>
-</a>-->
-<!--
+</a>
 <book *ngFor="let book of books | async"
 	  [meta]="book"
 	  [selected]="cartService.isIn(book)"
 	  (onClick)="cartService.add(book)"
-	  (onRemoveClick)="cartService.remove(book)"></book>-->
+	  (onRemoveClick)="cartService.remove(book)"></book>

@@ -1,0 +1,10 @@
+<div class="book" (click)="onClick.emit()" [ngClass]="{'book_selected': selected}">
+	<div class="book-img"><img src="/assets/img/{{meta.img}}"></div>
+	<div class="book-price"><span>&pound; {{meta.price}},-</span></div>
+	<div class="book-wrap">
+		<div class="book-title">{{meta.title}}</div>
+		<div class="book-description">{{meta.description}}</div>
+		<div class="book-author">{{meta.author}}</div>
+	</div>
+	<div class="book-remove" (click)="$event.stopPropagation(); onRemoveClick.emit()">Remove</div>
+</div>
