@@ -1,0 +1,75 @@
+[
+  {
+    "id": 1,
+    "title": "JavaScript and JSON Essentials",
+    "description": "The book follows a tutorial-based approach and will teach you how to work with JSON tools, design JSON objects, and how to use different techniques to handle JSON data.This book is a great resource for developers who would like to learn more about JSON and who wish to apply it",
+    "img": "javascript-and-json-essentials.jpeg",
+    "author": "Srinivas Sriparasa",
+    "price": "19"
+  },
+  {
+    "id": 2,
+    "title": "Functional Programming in JavaScript",
+    "description": "If you are a JavaScript developer interested in learning functional programming, looking for the quantum leap towards mastering the JavaScript language, or just want to become a better programmer in general, then this book is ideal for you.",
+    "img": "Functional-Programming-in-JavaScript.png",
+    "author": "Dan Mantyla",
+    "price": "20"
+  },
+  {
+    "id": 3,
+    "title": "Object-Oriented JavaScript",
+    "description": "Annotation Once listed in the \"nice to have\" sections of job postings, these days the knowledge of JavaScript is a deciding factor when it comes to hiring web developers.",
+    "img": "object-oriented-js.jpeg",
+    "author": "Stoyan Stefanov",
+    "price": "25"
+  },
+  {
+    "id": 4,
+    "title": "Getting Started with Meteor JavaScript Framework",
+    "description": "Written in an engaging, easy-to-follow style, \"Getting Started with Meteor\" is a practical guide for developing modern web applications with Meteor.",
+    "img": "getting-started-with-meteor.jpeg",
+    "author": "Isaac Strack",
+    "price": "19"
+  },
+  {
+    "id": 5,
+    "title": "Learning Three.js",
+    "description": "Annotation Three.js is a JavaScript 3D library that offers a wide range of features for creating and displaying stunning 3D computer graphics on a web browser in an intuitive manner using JavaScript without having to deal with the complexity of a WebGL low-level API.",
+    "img": "learning-three-js.jpeg",
+    "author": "Jos Dirksen",
+    "price": "31"
+  },
+  {
+    "id": 6,
+    "title": "JavaScript and JQuery",
+    "description": "Learn JavaScript and jQuery a nicer way This full-color book adopts a visual approach to teaching JavaScript & jQuery, showing you how to make web pages more interactive and interfaces more intuitive through the use of inspiring code examples, infographics, and photography.",
+    "img": "javascript-and-jquery.jpeg",
+    "author": "Jon Duckett",
+    "price": "20"
+  },
+  {
+    "id": 7,
+    "title": "Web Design with HTML, CSS, JavaScript and JQuery",
+    "description": "A two-book set for web designers and front-end developers This two-book set combines the titles HTML & CSS: Designing and Building Web Sites and JavaScript & jQuery",
+    "img": "js-and-jq.jpeg",
+    "author": "Jon Duckett",
+    "price": "29"
+  },
+  {
+    "id": 8,
+    "title": "Programming JavaScript Applications: Robust Web Architecture with Node",
+    "description": "Take advantage of JavaScript’s power to build robust web-scale or enterprise applications that are easy to extend and maintain.",
+    "img": "js-app.jpeg",
+    "author": "Eric Elliott",
+    "price": "20"
+  },
+  {
+    "id": 9,
+    "title": "JavaScript Pocket Reference",
+    "description": "JavaScript is the ubiquitous programming language of the Web, and for more than 15 years, JavaScript: The Definitive Guide has been the bible of JavaScript programmers around the world.",
+    "img": "js.jpeg",
+    "author": "David Flanagan",
+    "price": "8"
+  }
+]
+
