@@ -17,15 +17,23 @@ import {Checkout} from './components/checkout/checkout';
 import {CheckoutItem} from './components/checkout/item/item';
 
 const routes = [
-    {
-        path: 'list',
-        component: List
-    },
-    {
-        path: '',
-        redirectTo: '/list',
-        pathMatch: 'full'
-    }
+	{
+		path: 'payment',
+		component: Payment
+	},
+	{
+		path: 'checkout',
+		component: Checkout
+	},
+	{
+		path: 'list',
+		component: List
+	},
+	{
+		path: '',
+		redirectTo: '/list',
+		pathMatch: 'full'
+	}
 ];
 
 @NgModule({

@@ -5,6 +5,7 @@ import {Component} from '@angular/core';
 	template: `
     <heading></heading>
     <bread-crumbs></bread-crumbs>
+    <router-outlet></router-outlet>
   `
 })
 export class App {}

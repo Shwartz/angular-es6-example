@@ -61643,6 +61643,12 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var routes = [{
+		path: 'payment',
+		component: _payment.Payment
+	}, {
+		path: 'checkout',
+		component: _checkout.Checkout
+	}, {
 		path: 'list',
 		component: _list.List
 	}, {
@@ -77852,7 +77858,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	   value: true
 	});
 	exports.App = undefined;
 	
@@ -77863,10 +77869,10 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var App = exports.App = (_dec = (0, _core.Component)({
-	  selector: 'app',
-	  template: '\n    <heading></heading>\n    <bread-crumbs></bread-crumbs>\n  '
+	   selector: 'app',
+	   template: '\n    <heading></heading>\n    <bread-crumbs></bread-crumbs>\n    <router-outlet></router-outlet>\n  '
 	}), _dec(_class = function App() {
-	  _classCallCheck(this, App);
+	   _classCallCheck(this, App);
 	}) || _class);
 
 /***/ },
