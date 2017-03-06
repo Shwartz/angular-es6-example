@@ -61630,6 +61630,8 @@
 	
 	var _list = __webpack_require__(134);
 	
+	var _cart2 = __webpack_require__(137);
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var routes = [{
@@ -61642,7 +61644,7 @@
 	}];
 	
 	var AppModule = exports.AppModule = (_dec = (0, _core.NgModule)({
-		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List],
+		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List, _cart2.Cart],
 		bootstrap: [_app.App],
 		imports: [_router.RouterModule.forRoot(routes), _platformBrowser.BrowserModule, _common.CommonModule, _forms.FormsModule, _http.HttpModule],
 		providers: [_cart.CartService]
@@ -95228,6 +95230,87 @@
 /***/ function(module, exports) {
 
 	module.exports = ".book {\n  position: relative;\n  width: 100%;\n  height: 480px;\n  margin: 16px 0;\n  background: #ede5bc;\n  cursor: pointer;\n  box-shadow: 0 0 2px #595959;\n  transition: box-shadow 0.3s ease-in-out;\n}\n\n.book:hover {\n  box-shadow: 4px 4px 16px #444444;\n}\n\n.book_selected {\n  outline: 1px solid #f2f2f2;\n  cursor: default;\n  box-shadow: none;\n}\n\n.book_selected .book-wrap {\n  background: #fff6d6;\n}\n\n.book_selected .book-description {\n  opacity: 1;\n  max-height: 10rem;\n}\n\n.book_selected .book-price {\n  color: white;\n  background-color: #e06218;\n  box-shadow: 0 0 1px #444;\n  transform: rotate(16deg);\n}\n\n.book_selected .book-remove {\n  display: block;\n}\n\n.book_selected:hover {\n  box-shadow: none;\n}\n\n.book-remove {\n  display: none;\n  position: absolute;\n  left: 10px;\n  bottom: 10px;\n  cursor: pointer;\n}\n\n.book-img {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n\n.book-img img {\n  position: absolute;\n  width: 100%;\n}\n\n.book-price {\n  position: absolute;\n  width: 64px;\n  height: 64px;\n  top: 8px;\n  right: 8px;\n  background: white;\n  text-align: center;\n  border-radius: 50%;\n  box-shadow: 0 0 1px #ccc;\n  transition: transform 0.8s, background 0.8s, color 0.8s;\n}\n\n.book-price span {\n  top: 24px;\n  position: relative;\n  font-weight: bold;\n}\n\n.book-wrap {\n  position: absolute;\n  bottom: 0;\n  padding: 25px 25px 60px;\n  width: 100%;\n  min-height: 25%;\n  background: #fff;\n  transition: background 0.5s;\n}\n\n.book-title {\n  font-size: 24px;\n}\n\n.book-author {\n  font-size: 18px;\n  font-style: italic;\n  text-align: right;\n}\n\n.book-description {\n  padding: 24px 0 16px;\n  max-height: 0;\n  line-height: 1.2em;\n  font-size: 14px;\n  opacity: 0;\n  transition: all 0.3s ease-in-out;\n}\n\n.book:hover .book-wrap {\n  background: #fff6d6;\n}\n\n.book:hover .book-description {\n  opacity: 1;\n  max-height: 10rem;\n}\n\n/*# sourceMappingURL=list.css.map */\n"
+
+/***/ },
+/* 137 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Cart = undefined;
+	
+	var _dec, _dec2, _class, _desc, _value, _class2, _descriptor;
+	
+	var _core = __webpack_require__(82);
+	
+	function _initDefineProp(target, property, descriptor, context) {
+		if (!descriptor) return;
+		Object.defineProperty(target, property, {
+			enumerable: descriptor.enumerable,
+			configurable: descriptor.configurable,
+			writable: descriptor.writable,
+			value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+		});
+	}
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+		var desc = {};
+		Object['ke' + 'ys'](descriptor).forEach(function (key) {
+			desc[key] = descriptor[key];
+		});
+		desc.enumerable = !!desc.enumerable;
+		desc.configurable = !!desc.configurable;
+	
+		if ('value' in desc || desc.initializer) {
+			desc.writable = true;
+		}
+	
+		desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+			return decorator(target, property, desc) || desc;
+		}, desc);
+	
+		if (context && desc.initializer !== void 0) {
+			desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+			desc.initializer = undefined;
+		}
+	
+		if (desc.initializer === void 0) {
+			Object['define' + 'Property'](target, property, desc);
+			desc = null;
+		}
+	
+		return desc;
+	}
+	
+	function _initializerWarningHelper(descriptor, context) {
+		throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+	}
+	
+	var Cart = exports.Cart = (_dec = (0, _core.Component)({
+		selector: 'cart',
+		template: __webpack_require__(138),
+		styles: [__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./cart.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))]
+	}), _dec2 = (0, _core.Input)(), _dec(_class = (_class2 = function Cart() {
+		_classCallCheck(this, Cart);
+	
+		_initDefineProp(this, 'count', _descriptor, this);
+	}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'count', [_dec2], {
+		enumerable: true,
+		initializer: function initializer() {
+			return this.count;
+		}
+	})), _class2)) || _class);
+
+/***/ },
+/* 138 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"cart\" [ngClass]=\"{cart_empty: count == 0}\">\n\t<div class=\"cart-wrap\">\n\t\t<div class=\"cart-count\">{{count}}</div>\n\t</div>\n</div>"
 
 /***/ }
 /******/ ]);
