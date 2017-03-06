@@ -2,11 +2,6 @@ import {Component} from '@angular/core';
 import {Http} from '@angular/http';
 import {CartService} from '../../services/cart.service';
 
-const path = 'public/src/app/components/list/';
-
-/*import headerTemplate from 'raw-loader!./list.html';
- import headerStyle from 'raw-loader!./list.css';*/
-
 @Component({
 	selector: 'list',
 	template: require('./list.html'),
