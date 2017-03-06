@@ -61634,6 +61634,8 @@
 	
 	var _book = __webpack_require__(140);
 	
+	var _payment = __webpack_require__(143);
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var routes = [{
@@ -61646,7 +61648,7 @@
 	}];
 	
 	var AppModule = exports.AppModule = (_dec = (0, _core.NgModule)({
-		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List, _cart2.Cart, _book.Book],
+		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List, _cart2.Cart, _book.Book, _payment.Payment],
 		bootstrap: [_app.App],
 		imports: [_router.RouterModule.forRoot(routes), _platformBrowser.BrowserModule, _common.CommonModule, _forms.FormsModule, _http.HttpModule],
 		providers: [_cart.CartService]
@@ -95427,6 +95429,96 @@
 /***/ function(module, exports) {
 
 	module.exports = ":host {\n  display: inline-block;\n  width: 30%;\n  padding: 0 1.5%;\n  float: left;\n}\n\n.book {\n  position: relative;\n  width: 100%;\n  height: 480px;\n  margin: 16px 0;\n  background: #ede5bc;\n  cursor: pointer;\n  box-shadow: 0 0 2px #595959;\n  transition: box-shadow 0.1s ease-in-out;\n}\n\n.book:hover {\n  box-shadow: 4px 4px 16px #444444;\n}\n\n.book_selected {\n  outline: 1px solid #f2f2f2;\n  cursor: default;\n  box-shadow: none;\n}\n\n.book_selected .book-wrap {\n  background: #fff6d6;\n}\n\n.book_selected .book-description {\n  opacity: 1;\n  max-height: 10rem;\n}\n\n.book_selected .book-price {\n  color: white;\n  background-color: #e06218;\n  box-shadow: 0 0 1px #444;\n  transform: rotate(16deg);\n}\n\n.book_selected .book-remove {\n  display: block;\n}\n\n.book_selected:hover {\n  box-shadow: none;\n}\n\n.book-remove {\n  display: none;\n  position: absolute;\n  padding: 8px 16px;\n  left: 10px;\n  bottom: 10px;\n  background: #fff;\n  cursor: pointer;\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  font-size: 12px;\n  transition: color 0.2s, background  0.2s;\n}\n\n.book-remove:hover {\n  background-color: #e0b08c;\n}\n\n.book-img {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n\n.book-img img {\n  position: absolute;\n  width: 100%;\n}\n\n.book-price {\n  position: absolute;\n  width: 64px;\n  height: 64px;\n  top: 8px;\n  right: 8px;\n  background: white;\n  text-align: center;\n  border-radius: 50%;\n  box-shadow: 0 0 1px #ccc;\n  transition: transform 0.8s, background 0.8s, color 0.8s;\n}\n\n.book-price span {\n  top: 24px;\n  position: relative;\n  font-weight: bold;\n}\n\n.book-wrap {\n  position: absolute;\n  bottom: 0;\n  padding: 25px 25px 60px;\n  width: 100%;\n  min-height: 25%;\n  background: #fff;\n  transition: background 0.5s;\n}\n\n.book-title {\n  font-size: 24px;\n}\n\n.book-author {\n  font-size: 18px;\n  font-style: italic;\n  text-align: right;\n}\n\n.book-description {\n  padding: 24px 0 16px;\n  max-height: 0;\n  line-height: 1.2em;\n  font-size: 14px;\n  opacity: 0;\n  transition: all 0.3s ease-in-out;\n}\n\n.book:hover .book-wrap {\n  background: #fff6d6;\n}\n\n.book:hover .book-description {\n  opacity: 1;\n  max-height: 10rem;\n}\n\n/*# sourceMappingURL=book.css.map */\n"
+
+/***/ },
+/* 143 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Payment = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _dec, _class;
+	
+	var _core = __webpack_require__(82);
+	
+	var _router = __webpack_require__(90);
+	
+	var _cart = __webpack_require__(129);
+	
+	var _cookie = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../services/cookie.service\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	//import {Memoize} from '../../services/memoize.service';
+	
+	/*import headerTemplate from 'raw-loader!./payment.html';
+	 import headerStyle from 'raw-loader!./payment.css';*/
+	
+	var path = 'public/src/app/components/payment/';
+	
+	var Payment = exports.Payment = (_dec = (0, _core.Component)({
+		selector: 'payment',
+		template: __webpack_require__(144),
+		styles: [__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./payment.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))]
+	}), _dec(_class = function () {
+		_createClass(Payment, null, [{
+			key: 'parameters',
+	
+			//memoize = new Memoize();
+	
+			get: function get() {
+				return [[_cart.CartService], [_router.Router]];
+			}
+		}]);
+	
+		function Payment($cartService, $router) {
+			_classCallCheck(this, Payment);
+	
+			this.details = {};
+			this.submitted = false;
+			this.cartService = this.cartService;
+			this.router = this.router;
+			this.cookies = new _cookie.Cookies();
+	
+			this.cartService = $cartService;
+			this.router = $router;
+		}
+	
+		_createClass(Payment, [{
+			key: 'ngOnInit',
+			value: function ngOnInit() {
+				if (this.cartService.isEmpty()) {
+					this.router.navigate(['/list']);
+				}
+			}
+		}, {
+			key: 'getTotal',
+			value: function getTotal() {
+				return this.cookies.readCookie('totalCurrency');
+				//return this.memoize.get('totalCurrency');
+			}
+		}, {
+			key: 'onSubmit',
+			value: function onSubmit() {
+				this.cartService.empty();
+				this.submitted = true;
+			}
+		}]);
+
+		return Payment;
+	}()) || _class);
+
+/***/ },
+/* 144 */
+/***/ function(module, exports) {
+
+	module.exports = "<form *ngIf=\"!submitted\" class=\"payment-form\" (submit)=\"onSubmit()\">\n\t<div class=\"payment\">\n\t\t<input type=\"text\" name=\"name\" placeholder=\"Name\" [(ngModel)]=\"details.name\" required>\n\t\t<input type=\"email\" name=\"email\" placeholder=\"E-mail\" [(ngModel)]=\"details.email\" required\n\t\t\t   pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\">\n\t\t<select name=\"paymentType\" [(ngModel)]=\"details.paymentType\" required>\n\t\t\t<option value=\"payPal\">PayPal</option>\n\t\t\t<option value=\"bitCoins\">BitCoins</option>\n\t\t\t<option value=\"visa\">Visa</option>\n\t\t\t<option value=\"mastercard\">Mastercard</option>\n\t\t</select>\n\t\t<div class=\"payment-total\">{{getTotal()}}</div>\n\t\t<input type=\"submit\" value=\"BUY\">\n\t</div>\n</form>\n\n<div *ngIf=\"submitted\" class=\"payment-done\">Thank You, {{details.name}}!</div>"
 
 /***/ }
 /******/ ]);

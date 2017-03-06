@@ -12,6 +12,7 @@ import {CartService} from './services/cart.service';
 import {List} from './components/list/list';
 import {Cart} from './components/cart/cart';
 import {Book} from './components/book/book';
+import {Payment} from './components/payment/payment';
 
 const routes = [
     {
@@ -32,7 +33,8 @@ const routes = [
 		BreadCrumbs,
 		List,
 		Cart,
-		Book
+		Book,
+		Payment
 	],
 	bootstrap: [
 		App

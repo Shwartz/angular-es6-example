@@ -1,0 +1,17 @@
+<form *ngIf="!submitted" class="payment-form" (submit)="onSubmit()">
+	<div class="payment">
+		<input type="text" name="name" placeholder="Name" [(ngModel)]="details.name" required>
+		<input type="email" name="email" placeholder="E-mail" [(ngModel)]="details.email" required
+			   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+		<select name="paymentType" [(ngModel)]="details.paymentType" required>
+			<option value="payPal">PayPal</option>
+			<option value="bitCoins">BitCoins</option>
+			<option value="visa">Visa</option>
+			<option value="mastercard">Mastercard</option>
+		</select>
+		<div class="payment-total">{{getTotal()}}</div>
+		<input type="submit" value="BUY">
+	</div>
+</form>
+
+<div *ngIf="submitted" class="payment-done">Thank You, {{details.name}}!</div>
