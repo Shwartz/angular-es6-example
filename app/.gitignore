@@ -54,3 +54,4 @@ app/tmp/cache/persistent/
 app/tmp/logs/
 .idea/workspace.xml
 public/dev/
+.idea
