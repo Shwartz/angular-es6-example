@@ -95451,7 +95451,7 @@
 	
 	var _cart = __webpack_require__(129);
 	
-	var _cookie = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../services/cookie.service\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _cookie = __webpack_require__(144);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -95464,8 +95464,8 @@
 	
 	var Payment = exports.Payment = (_dec = (0, _core.Component)({
 		selector: 'payment',
-		template: __webpack_require__(144),
-		styles: [__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./payment.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))]
+		template: __webpack_require__(145),
+		styles: [__webpack_require__(146)]
 	}), _dec(_class = function () {
 		_createClass(Payment, null, [{
 			key: 'parameters',
@@ -95518,7 +95518,66 @@
 /* 144 */
 /***/ function(module, exports) {
 
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Cookies = exports.Cookies = function () {
+		function Cookies() {
+			_classCallCheck(this, Cookies);
+		}
+	
+		_createClass(Cookies, [{
+			key: "createCookie",
+			value: function createCookie(name, value, days) {
+				var expires = "";
+				if (days) {
+					var date = new Date();
+					date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+					expires = "; expires=" + date.toUTCString();
+				}
+				document.cookie = name + "=" + value + expires + "; path=/";
+			}
+		}, {
+			key: "readCookie",
+			value: function readCookie(name) {
+				var nameEQ = name + "=";
+				var ca = document.cookie.split(';');
+				for (var i = 0; i < ca.length; i++) {
+					var c = ca[i];
+					while (c.charAt(0) == ' ') {
+						c = c.substring(1, c.length);
+					}if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+				}
+				return null;
+			}
+		}, {
+			key: "eraseCookie",
+			value: function eraseCookie(name) {
+				this.createCookie(name, "", -1);
+			}
+		}]);
+
+		return Cookies;
+	}();
+
+/***/ },
+/* 145 */
+/***/ function(module, exports) {
+
 	module.exports = "<form *ngIf=\"!submitted\" class=\"payment-form\" (submit)=\"onSubmit()\">\n\t<div class=\"payment\">\n\t\t<input type=\"text\" name=\"name\" placeholder=\"Name\" [(ngModel)]=\"details.name\" required>\n\t\t<input type=\"email\" name=\"email\" placeholder=\"E-mail\" [(ngModel)]=\"details.email\" required\n\t\t\t   pattern=\"^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$\">\n\t\t<select name=\"paymentType\" [(ngModel)]=\"details.paymentType\" required>\n\t\t\t<option value=\"payPal\">PayPal</option>\n\t\t\t<option value=\"bitCoins\">BitCoins</option>\n\t\t\t<option value=\"visa\">Visa</option>\n\t\t\t<option value=\"mastercard\">Mastercard</option>\n\t\t</select>\n\t\t<div class=\"payment-total\">{{getTotal()}}</div>\n\t\t<input type=\"submit\" value=\"BUY\">\n\t</div>\n</form>\n\n<div *ngIf=\"submitted\" class=\"payment-done\">Thank You, {{details.name}}!</div>"
+
+/***/ },
+/* 146 */
+/***/ function(module, exports) {
+
+	module.exports = ".payment {\n  width: 210px;\n  margin: 80px auto 24px;\n}\n\n.payment input {\n  display: block;\n  width: 200px;\n  padding: 8px;\n  margin-top: 8px;\n}\n\n.payment select {\n  display: block;\n  /*width: 200px;\n\t\tpadding: 8px;\n\t\tmargin-top: 8px;\n\t\t*/\n  margin-bottom: 16px;\n  width: 224px;\n  font-size: 18px;\n  margin-top: 16px;\n}\n\n.payment input[type=submit] {\n  position: relative;\n  width: 200px;\n  top: -4px;\n  display: inline-block;\n  margin: 32px 0 0;\n  padding: 8px 16px;\n  left: 10px;\n  bottom: 10px;\n  background: #def9d2;\n  cursor: pointer;\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  font-size: 12px;\n  transition: color 0.2s, background 0.2s;\n  text-decoration: none;\n}\n\n.payment input[type=submit]:hover {\n  background-color: #bfd6b4;\n}\n\n.payment-total {\n  font-size: 24px;\n}\n\n.payment-form .ng-valid[required], .payment-form .ng-valid.required {\n  border-left: 5px solid #42A948;\n  /* green */\n}\n\n.payment-form .ng-invalid:not(form) {\n  border-left: 5px solid #a94442;\n  /* red */\n}\n\n.payment-done {\n  width: 600px;\n  margin: 80px auto 24px;\n  font-size: 24px;\n  text-align: center;\n}\n\n/*# sourceMappingURL=payment.css.map */\n"
 
 /***/ }
 /******/ ]);
