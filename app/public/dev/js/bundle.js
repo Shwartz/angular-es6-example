@@ -61628,11 +61628,13 @@
 	
 	var _cart = __webpack_require__(129);
 	
+	var _list = __webpack_require__(134);
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var routes = [{
 		path: 'list',
-		component: List
+		component: _list.List
 	}, {
 		path: '',
 		redirectTo: '/list',
@@ -61640,7 +61642,7 @@
 	}];
 	
 	var AppModule = exports.AppModule = (_dec = (0, _core.NgModule)({
-		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs],
+		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List],
 		bootstrap: [_app.App],
 		imports: [_router.RouterModule.forRoot(routes), _platformBrowser.BrowserModule, _common.CommonModule, _forms.FormsModule, _http.HttpModule],
 		providers: [_cart.CartService]
@@ -95164,6 +95166,68 @@
 /***/ function(module, exports) {
 
 	module.exports = ":host {\n  display: block;\n}\n\n.bread-crumbs-item {\n  display: inline-block;\n}\n\n.bread-crumbs-item-link {\n  color: #333;\n}\n\n.bread-crumbs-item-link[disabled] {\n  pointer-events: none;\n  cursor: default;\n  color: #ccc;\n}\n\n.bread-crumbs-item + .bread-crumbs-item {\n  margin-left: 5px;\n}\n\n.bread-crumbs-item + .bread-crumbs-item:before {\n  content: \">\";\n  position: relative;\n  margin-right: 9px;\n}\n\n.bread-crumbs-item_active {\n  font-weight: bold;\n}\n\n/*# sourceMappingURL=bread-crumbs.css.map */\n"
+
+/***/ },
+/* 134 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.List = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _dec, _class;
+	
+	var _core = __webpack_require__(82);
+	
+	var _http = __webpack_require__(89);
+	
+	var _cart = __webpack_require__(129);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var List = exports.List = (_dec = (0, _core.Component)({
+	    selector: 'list',
+	    template: __webpack_require__(135),
+	    styles: [__webpack_require__(136)]
+	}), _dec(_class = function () {
+	    _createClass(List, null, [{
+	        key: 'parameters',
+	        get: function get() {
+	            return [[_http.Http], [_cart.CartService]];
+	        }
+	    }]);
+	
+	    function List($http, $cartService) {
+	        _classCallCheck(this, List);
+	
+	        this.books = this.books;
+	        this.cartService = this.cartService;
+	
+	        this.cartService = $cartService;
+	        this.books = $http.get('assets/books.json').map(function (res) {
+	            return res.json();
+	        });
+	    }
+	
+	    return List;
+	}()) || _class);
+
+/***/ },
+/* 135 */
+/***/ function(module, exports) {
+
+	module.exports = "<a routerLink=\"/checkout\">\n\t<cart [count]=\"cartService.count()\"></cart>\n</a>\n<book *ngFor=\"let book of books | async\"\n\t  [meta]=\"book\"\n\t  [selected]=\"cartService.isIn(book)\"\n\t  (onClick)=\"cartService.add(book)\"\n\t  (onRemoveClick)=\"cartService.remove(book)\"></book>"
+
+/***/ },
+/* 136 */
+/***/ function(module, exports) {
+
+	module.exports = ".book {\n  position: relative;\n  width: 100%;\n  height: 480px;\n  margin: 16px 0;\n  background: #ede5bc;\n  cursor: pointer;\n  box-shadow: 0 0 2px #595959;\n  transition: box-shadow 0.3s ease-in-out;\n}\n\n.book:hover {\n  box-shadow: 4px 4px 16px #444444;\n}\n\n.book_selected {\n  outline: 1px solid #f2f2f2;\n  cursor: default;\n  box-shadow: none;\n}\n\n.book_selected .book-wrap {\n  background: #fff6d6;\n}\n\n.book_selected .book-description {\n  opacity: 1;\n  max-height: 10rem;\n}\n\n.book_selected .book-price {\n  color: white;\n  background-color: #e06218;\n  box-shadow: 0 0 1px #444;\n  transform: rotate(16deg);\n}\n\n.book_selected .book-remove {\n  display: block;\n}\n\n.book_selected:hover {\n  box-shadow: none;\n}\n\n.book-remove {\n  display: none;\n  position: absolute;\n  left: 10px;\n  bottom: 10px;\n  cursor: pointer;\n}\n\n.book-img {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n\n.book-img img {\n  position: absolute;\n  width: 100%;\n}\n\n.book-price {\n  position: absolute;\n  width: 64px;\n  height: 64px;\n  top: 8px;\n  right: 8px;\n  background: white;\n  text-align: center;\n  border-radius: 50%;\n  box-shadow: 0 0 1px #ccc;\n  transition: transform 0.8s, background 0.8s, color 0.8s;\n}\n\n.book-price span {\n  top: 24px;\n  position: relative;\n  font-weight: bold;\n}\n\n.book-wrap {\n  position: absolute;\n  bottom: 0;\n  padding: 25px 25px 60px;\n  width: 100%;\n  min-height: 25%;\n  background: #fff;\n  transition: background 0.5s;\n}\n\n.book-title {\n  font-size: 24px;\n}\n\n.book-author {\n  font-size: 18px;\n  font-style: italic;\n  text-align: right;\n}\n\n.book-description {\n  padding: 24px 0 16px;\n  max-height: 0;\n  line-height: 1.2em;\n  font-size: 14px;\n  opacity: 0;\n  transition: all 0.3s ease-in-out;\n}\n\n.book:hover .book-wrap {\n  background: #fff6d6;\n}\n\n.book:hover .book-description {\n  opacity: 1;\n  max-height: 10rem;\n}\n\n/*# sourceMappingURL=list.css.map */\n"
 
 /***/ }
 /******/ ]);

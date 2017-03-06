@@ -9,6 +9,7 @@ import {App} from './app';
 import {Heading} from './components/heading/heading';
 import {BreadCrumbs} from './components/bread-crumbs/bread-crumbs';
 import {CartService} from './services/cart.service';
+import {List} from './components/list/list';
 
 const routes = [
     {
@@ -27,6 +28,7 @@ const routes = [
 		App,
 		Heading,
 		BreadCrumbs,
+		List
 	],
 	bootstrap: [
 		App

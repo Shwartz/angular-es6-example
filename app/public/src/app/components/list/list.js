@@ -4,8 +4,8 @@ import {CartService} from '../../services/cart.service';
 
 @Component({
     selector: 'list',
-    templateUrl: `${path}list.html`,
-    styleUrls: [`${path}list.css`],
+    template: require('./list.html'),
+    styles: [require('./list.css')]
 })
 export class List {
     books;
