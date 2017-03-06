@@ -11,4 +11,3 @@ export class Book {
 	@Output() onClick = new EventEmitter();
 	@Output() onRemoveClick = new EventEmitter();
 }
-//https://blog.thoughtram.io/angular/2016/06/08/component-relative-paths-in-angular-2.html

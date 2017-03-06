@@ -61632,6 +61632,8 @@
 	
 	var _cart2 = __webpack_require__(137);
 	
+	var _book = __webpack_require__(140);
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var routes = [{
@@ -61644,7 +61646,7 @@
 	}];
 	
 	var AppModule = exports.AppModule = (_dec = (0, _core.NgModule)({
-		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List, _cart2.Cart],
+		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List, _cart2.Cart, _book.Book],
 		bootstrap: [_app.App],
 		imports: [_router.RouterModule.forRoot(routes), _platformBrowser.BrowserModule, _common.CommonModule, _forms.FormsModule, _http.HttpModule],
 		providers: [_cart.CartService]
@@ -95223,7 +95225,7 @@
 /* 135 */
 /***/ function(module, exports) {
 
-	module.exports = "<!--<a routerLink=\"/checkout\">\n\t<cart [count]=\"cartService.count()\"></cart>\n</a>-->\n<!--\n<book *ngFor=\"let book of books | async\"\n\t  [meta]=\"book\"\n\t  [selected]=\"cartService.isIn(book)\"\n\t  (onClick)=\"cartService.add(book)\"\n\t  (onRemoveClick)=\"cartService.remove(book)\"></book>-->\n"
+	module.exports = "<a routerLink=\"/checkout\">\n\t<cart [count]=\"cartService.count()\"></cart>\n</a>\n<book *ngFor=\"let book of books | async\"\n\t  [meta]=\"book\"\n\t  [selected]=\"cartService.isIn(book)\"\n\t  (onClick)=\"cartService.add(book)\"\n\t  (onRemoveClick)=\"cartService.remove(book)\"></book>\n"
 
 /***/ },
 /* 136 */
@@ -95317,6 +95319,114 @@
 /***/ function(module, exports) {
 
 	module.exports = ".cart {\n  position: absolute;\n  width: 72px;\n  height: 60px;\n  top: 32px;\n  right: 44px;\n  background: url(\"/assets/img/icn-cart.png\") no-repeat 0 0;\n  background-size: cover;\n  opacity: 1;\n  transition: opacity 0.3s;\n}\n\n.cart_empty {\n  opacity: 0.5;\n  cursor: default;\n}\n\n.cart-wrap {\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  top: -10px;\n  right: 9px;\n  border: 1px solid #444444;\n  border-radius: 50%;\n  background: #fff;\n  color: #000;\n}\n\n.cart-count {\n  position: relative;\n  top: 6px;\n  text-align: center;\n}\n\n/*# sourceMappingURL=cart.css.map */\n"
+
+/***/ },
+/* 140 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Book = undefined;
+	
+	var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+	
+	var _core = __webpack_require__(82);
+	
+	function _initDefineProp(target, property, descriptor, context) {
+		if (!descriptor) return;
+		Object.defineProperty(target, property, {
+			enumerable: descriptor.enumerable,
+			configurable: descriptor.configurable,
+			writable: descriptor.writable,
+			value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+		});
+	}
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+		var desc = {};
+		Object['ke' + 'ys'](descriptor).forEach(function (key) {
+			desc[key] = descriptor[key];
+		});
+		desc.enumerable = !!desc.enumerable;
+		desc.configurable = !!desc.configurable;
+	
+		if ('value' in desc || desc.initializer) {
+			desc.writable = true;
+		}
+	
+		desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+			return decorator(target, property, desc) || desc;
+		}, desc);
+	
+		if (context && desc.initializer !== void 0) {
+			desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+			desc.initializer = undefined;
+		}
+	
+		if (desc.initializer === void 0) {
+			Object['define' + 'Property'](target, property, desc);
+			desc = null;
+		}
+	
+		return desc;
+	}
+	
+	function _initializerWarningHelper(descriptor, context) {
+		throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+	}
+	
+	var Book = exports.Book = (_dec = (0, _core.Component)({
+		selector: 'book',
+		template: __webpack_require__(141),
+		styles: [__webpack_require__(142)]
+	}), _dec2 = (0, _core.Input)(), _dec3 = (0, _core.Input)(), _dec4 = (0, _core.Output)(), _dec5 = (0, _core.Output)(), _dec(_class = (_class2 = function Book() {
+		_classCallCheck(this, Book);
+	
+		_initDefineProp(this, 'meta', _descriptor, this);
+	
+		_initDefineProp(this, 'selected', _descriptor2, this);
+	
+		_initDefineProp(this, 'onClick', _descriptor3, this);
+	
+		_initDefineProp(this, 'onRemoveClick', _descriptor4, this);
+	}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'meta', [_dec2], {
+		enumerable: true,
+		initializer: function initializer() {
+			return this.meta;
+		}
+	}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'selected', [_dec3], {
+		enumerable: true,
+		initializer: function initializer() {
+			return this.selected;
+		}
+	}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'onClick', [_dec4], {
+		enumerable: true,
+		initializer: function initializer() {
+			return new _core.EventEmitter();
+		}
+	}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'onRemoveClick', [_dec5], {
+		enumerable: true,
+		initializer: function initializer() {
+			return new _core.EventEmitter();
+		}
+	})), _class2)) || _class);
+
+/***/ },
+/* 141 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"book\" (click)=\"onClick.emit()\" [ngClass]=\"{'book_selected': selected}\">\n\t<div class=\"book-img\"><img src=\"/assets/img/{{meta.img}}\"></div>\n\t<div class=\"book-price\"><span>&pound; {{meta.price}},-</span></div>\n\t<div class=\"book-wrap\">\n\t\t<div class=\"book-title\">{{meta.title}}</div>\n\t\t<div class=\"book-description\">{{meta.description}}</div>\n\t\t<div class=\"book-author\">{{meta.author}}</div>\n\t</div>\n\t<div class=\"book-remove\" (click)=\"$event.stopPropagation(); onRemoveClick.emit()\">Remove</div>\n</div>"
+
+/***/ },
+/* 142 */
+/***/ function(module, exports) {
+
+	module.exports = ":host {\n  display: inline-block;\n  width: 30%;\n  padding: 0 1.5%;\n  float: left;\n}\n\n.book {\n  position: relative;\n  width: 100%;\n  height: 480px;\n  margin: 16px 0;\n  background: #ede5bc;\n  cursor: pointer;\n  box-shadow: 0 0 2px #595959;\n  transition: box-shadow 0.1s ease-in-out;\n}\n\n.book:hover {\n  box-shadow: 4px 4px 16px #444444;\n}\n\n.book_selected {\n  outline: 1px solid #f2f2f2;\n  cursor: default;\n  box-shadow: none;\n}\n\n.book_selected .book-wrap {\n  background: #fff6d6;\n}\n\n.book_selected .book-description {\n  opacity: 1;\n  max-height: 10rem;\n}\n\n.book_selected .book-price {\n  color: white;\n  background-color: #e06218;\n  box-shadow: 0 0 1px #444;\n  transform: rotate(16deg);\n}\n\n.book_selected .book-remove {\n  display: block;\n}\n\n.book_selected:hover {\n  box-shadow: none;\n}\n\n.book-remove {\n  display: none;\n  position: absolute;\n  padding: 8px 16px;\n  left: 10px;\n  bottom: 10px;\n  background: #fff;\n  cursor: pointer;\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  font-size: 12px;\n  transition: color 0.2s, background  0.2s;\n}\n\n.book-remove:hover {\n  background-color: #e0b08c;\n}\n\n.book-img {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n\n.book-img img {\n  position: absolute;\n  width: 100%;\n}\n\n.book-price {\n  position: absolute;\n  width: 64px;\n  height: 64px;\n  top: 8px;\n  right: 8px;\n  background: white;\n  text-align: center;\n  border-radius: 50%;\n  box-shadow: 0 0 1px #ccc;\n  transition: transform 0.8s, background 0.8s, color 0.8s;\n}\n\n.book-price span {\n  top: 24px;\n  position: relative;\n  font-weight: bold;\n}\n\n.book-wrap {\n  position: absolute;\n  bottom: 0;\n  padding: 25px 25px 60px;\n  width: 100%;\n  min-height: 25%;\n  background: #fff;\n  transition: background 0.5s;\n}\n\n.book-title {\n  font-size: 24px;\n}\n\n.book-author {\n  font-size: 18px;\n  font-style: italic;\n  text-align: right;\n}\n\n.book-description {\n  padding: 24px 0 16px;\n  max-height: 0;\n  line-height: 1.2em;\n  font-size: 14px;\n  opacity: 0;\n  transition: all 0.3s ease-in-out;\n}\n\n.book:hover .book-wrap {\n  background: #fff6d6;\n}\n\n.book:hover .book-description {\n  opacity: 1;\n  max-height: 10rem;\n}\n\n/*# sourceMappingURL=book.css.map */\n"
 
 /***/ }
 /******/ ]);

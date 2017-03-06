@@ -11,6 +11,7 @@ import {BreadCrumbs} from './components/bread-crumbs/bread-crumbs';
 import {CartService} from './services/cart.service';
 import {List} from './components/list/list';
 import {Cart} from './components/cart/cart';
+import {Book} from './components/book/book';
 
 const routes = [
     {
@@ -30,7 +31,8 @@ const routes = [
 		Heading,
 		BreadCrumbs,
 		List,
-		Cart
+		Cart,
+		Book
 	],
 	bootstrap: [
 		App

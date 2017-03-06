@@ -24,5 +24,8 @@ Uses Just-in-Time compiler and make's application compile on client-side.
 **How to do Everything in Angular 2 using vanilla ES5 or ES6**  
 [http://nicholasjohnson.com/blog/how-to-do-everything-in-angular2-using-es6/]
 
+**Component Relative path in Angular 2**
+[https://blog.thoughtram.io/angular/2016/06/08/component-relative-paths-in-angular-2.html]
+
 
 
