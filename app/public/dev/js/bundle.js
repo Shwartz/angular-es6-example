@@ -61638,6 +61638,8 @@
 	
 	var _checkout = __webpack_require__(147);
 	
+	var _item = __webpack_require__(148);
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var routes = [{
@@ -61650,7 +61652,7 @@
 	}];
 	
 	var AppModule = exports.AppModule = (_dec = (0, _core.NgModule)({
-		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List, _cart2.Cart, _book.Book, _payment.Payment, _checkout.Checkout],
+		declarations: [_app.App, _heading.Heading, _breadCrumbs.BreadCrumbs, _list.List, _cart2.Cart, _book.Book, _payment.Payment, _checkout.Checkout, _item.CheckoutItem],
 		bootstrap: [_app.App],
 		imports: [_router.RouterModule.forRoot(routes), _platformBrowser.BrowserModule, _common.CommonModule, _forms.FormsModule, _http.HttpModule],
 		providers: [_cart.CartService]
@@ -95182,7 +95184,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+		value: true
 	});
 	exports.List = undefined;
 	
@@ -95198,38 +95200,43 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
+	var path = 'public/src/app/components/list/';
+	
+	/*import headerTemplate from 'raw-loader!./list.html';
+	 import headerStyle from 'raw-loader!./list.css';*/
+	
 	var List = exports.List = (_dec = (0, _core.Component)({
-	    selector: 'list',
-	    template: __webpack_require__(135),
-	    styles: [__webpack_require__(136)]
+		selector: 'list',
+		template: __webpack_require__(135),
+		styles: [__webpack_require__(136)]
 	}), _dec(_class = function () {
-	    _createClass(List, null, [{
-	        key: 'parameters',
-	        get: function get() {
-	            return [[_http.Http], [_cart.CartService]];
-	        }
-	    }]);
+		_createClass(List, null, [{
+			key: 'parameters',
+			get: function get() {
+				return [[_http.Http], [_cart.CartService]];
+			}
+		}]);
 	
-	    function List($http, $cartService) {
-	        _classCallCheck(this, List);
+		function List($http, $cartService) {
+			_classCallCheck(this, List);
 	
-	        this.books = this.books;
-	        this.cartService = this.cartService;
+			this.books = this.books;
+			this.cartService = this.cartService;
 	
-	        this.cartService = $cartService;
-	        this.books = $http.get('assets/books.json').map(function (res) {
-	            return res.json();
-	        });
-	    }
+			this.cartService = $cartService;
+			this.books = $http.get('assets/books.json').map(function (res) {
+				return res.json();
+			});
+		}
 	
-	    return List;
+		return List;
 	}()) || _class);
 
 /***/ },
 /* 135 */
 /***/ function(module, exports) {
 
-	module.exports = "<a routerLink=\"/checkout\">\n\t<cart [count]=\"cartService.count()\"></cart>\n</a>\n<book *ngFor=\"let book of books | async\"\n\t  [meta]=\"book\"\n\t  [selected]=\"cartService.isIn(book)\"\n\t  (onClick)=\"cartService.add(book)\"\n\t  (onRemoveClick)=\"cartService.remove(book)\"></book>\n"
+	module.exports = "<a routerLink=\"/checkout\">\n\t<cart [count]=\"cartService.count()\"></cart>\n</a>\n<book *ngFor=\"let book of books | async\"\n\t  [meta]=\"book\"\n\t  [selected]=\"cartService.isIn(book)\"\n\t  (onClick)=\"cartService.add(book)\"\n\t  (onRemoveClick)=\"cartService.remove(book)\"></book>"
 
 /***/ },
 /* 136 */
@@ -95606,19 +95613,12 @@
 	
 	var _cookie = __webpack_require__(144);
 	
-	var _memoize = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../services/memoize.service\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var path = 'public/src/app/components/checkout/';
-	
-	/*import headerTemplate from 'raw-loader!./checkout.html';
-	 import headerStyle from 'raw-loader!./checkout.css';*/
 	
 	var Checkout = exports.Checkout = (_dec = (0, _core.Component)({
 		selector: 'checkout',
-		template: __webpack_require__(150),
-		styles: [__webpack_require__(151)],
+		template: __webpack_require__(151),
+		styles: [__webpack_require__(152)],
 		queries: {
 			itemsComponents: new _core.ViewChildren(_item.CheckoutItem)
 		}
@@ -95639,7 +95639,6 @@
 			this.cartService = this.cartService;
 			this.router = this.router;
 			this.cookies = new _cookie.Cookies();
-			this.memoize = new _memoize.Memoize();
 	
 			this.cartService = $cartService;
 			this.router = $router;
@@ -95687,7 +95686,6 @@
 			key: 'setPrice',
 			value: function setPrice() {
 				this.cookies.createCookie('totalCurrency', this.totalCurrency, 1);
-				//this.memoize.set('totalCurrency', this.totalCurrency);
 			}
 		}]);
 
@@ -95756,10 +95754,6 @@
 		throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 	}
 	
-	/*import headerTemplate from 'raw-loader!./item.html';
-	 import headerStyle  from 'raw-loader!./item.css';*/
-	
-	var path = 'public/src/app/components/checkout/item/';
 	var deliveryPrices = {
 		slow: 0.2,
 		medium: 0.3,
@@ -95769,7 +95763,7 @@
 	var CheckoutItem = exports.CheckoutItem = (_dec = (0, _core.Component)({
 		selector: 'checkout-item',
 		template: __webpack_require__(149),
-		styles: [__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./item.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))]
+		styles: [__webpack_require__(150)]
 	}), _dec2 = (0, _core.Input)(), _dec3 = (0, _core.Input)(), _dec4 = (0, _core.Output)(), _dec5 = (0, _core.Output)(), _dec(_class = (_class2 = function () {
 		function CheckoutItem() {
 			_classCallCheck(this, CheckoutItem);
@@ -95834,16 +95828,22 @@
 /* 149 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n<checkout-item *ngFor=\"let item of items; let i = index\"\n\t\t\t   [item]=\"item\"\n\t\t\t   [index]=\"i\"\n\t\t\t   (onTotalChange)=\"updateTotal()\"\n\t\t\t   (onRemoveClick)=\"remove(item)\"></checkout-item>\n<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n\n"
+	module.exports = "<div class=\"checkoutItem\">\n\t<!--<div class=\"checkoutItem-cell\">{{index}}</div>-->\n\t<div class=\"checkoutItem-cell\">\n\t\t<div class=\"checkoutItem-image\">\n\t\t\t<img src=\"/assets/img/{{item.img}}\">\n\t\t</div>\n\t</div>\n\t<div class=\"checkoutItem-cell checkoutItem-name\">\n\t\t<h1>{{item.title}}</h1>\n\t\t<p>{{item.description}}</p>\n\t</div>\n\t<div class=\"checkoutItem-cell checkoutItem-chooseDelivery\">\n\t\t<select name=\"delivery\" [(ngModel)]=\"delivery\" (change)=\"onTotalChange.emit()\">\n\t\t\t<option value=\"slow\">Slow - 2%</option>\n\t\t\t<option value=\"medium\">Medium - 3%</option>\n\t\t\t<option value=\"fast\">Fast - 5%</option>\n\t\t</select>\n\t</div>\n\t<div class=\"checkoutItem-cell checkoutItem-deliveryPrice\">\n\t\t<span>Delivery</span>\n\t\t{{getDeliveryPrice()}}\n\t</div>\n\t<div class=\"checkoutItem-cell checkoutItem-bookPrice\">\n\t\t<span>Price</span>\n\t\t{{getPriceCurrency(item.price)}}\n\t</div>\n\t<div class=\"checkoutItem-cell checkoutItem-total\">\n\t\t<span>Total</span>\n\t\t{{getTotalCurrency()}}\n\t</div>\n\t<div class=\"checkoutItem-cell checkoutItem-remove\" (click)=\"onRemoveClick.emit()\">Remove</div>\n</div>"
 
 /***/ },
 /* 150 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n<checkout-item *ngFor=\"let item of items; let i = index\"\n\t\t\t   [item]=\"item\"\n\t\t\t   [index]=\"i\"\n\t\t\t   (onTotalChange)=\"updateTotal()\"\n\t\t\t   (onRemoveClick)=\"remove(item)\"></checkout-item>\n<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n\n"
+	module.exports = ".checkoutItem {\n  display: flex;\n  align-items: center;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  border-bottom: 1px solid #f2f2f2;\n}\n\n.checkoutItem:first-child {\n  border-top: 1px solid #f2f2f2;\n}\n\n.checkoutItem-cell {\n  padding: 10px;\n}\n\n.checkoutItem-cell:nth-of-type(3) {\n  flex-shrink: 0;\n}\n\n.checkoutItem-image {\n  width: 80px;\n}\n\n.checkoutItem-name {\n  max-width: 800px;\n}\n\n.checkoutItem h1 {\n  margin-bottom: 24px;\n  font-size: 24px;\n}\n\n.checkoutItem p {\n  font-size: 14px;\n  line-height: 1.2em;\n}\n\n.checkoutItem-chooseDelivery, .checkoutItem-deliveryPrice, .checkoutItem-bookPrice, .checkoutItem-total {\n  /*align-self: flex-start;*/\n  text-align: center;\n  min-width: 86px;\n}\n\n.checkoutItem-chooseDelivery span, .checkoutItem-deliveryPrice span, .checkoutItem-bookPrice span, .checkoutItem-total span {\n  font-size: 14px;\n  font-weight: bold;\n  margin-bottom: 8px;\n  display: block;\n}\n\n.checkoutItem-remove {\n  margin-left: 32px;\n  padding: 8px 16px;\n  left: 10px;\n  bottom: 10px;\n  background: #fff;\n  cursor: pointer;\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  font-size: 12px;\n  transition: color 0.2s, background 0.2s;\n}\n\n.checkoutItem-remove:hover {\n  background-color: #e0b08c;\n}\n\n/*# sourceMappingURL=item.css.map */\n"
 
 /***/ },
 /* 151 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n<checkout-item *ngFor=\"let item of items; let i = index\"\n\t\t\t   [item]=\"item\"\n\t\t\t   [index]=\"i\"\n\t\t\t   (onTotalChange)=\"updateTotal()\"\n\t\t\t   (onRemoveClick)=\"remove(item)\"></checkout-item>\n<div class=\"checkout-summary\">\n\t<span>Total: {{totalCurrency}}</span>\n\t<a routerLink=\"/payment\" (click)=\"setPrice()\">BUY</a>\n</div>\n\n"
+
+/***/ },
+/* 152 */
 /***/ function(module, exports) {
 
 	module.exports = ".checkout-summary {\n  text-align: right;\n  margin: 20px 0;\n}\n\n.checkout-summary span {\n  display: inline-block;\n  font-size: 24px;\n}\n\n.checkout-summary a {\n  position: relative;\n  top: -4px;\n  margin-right: 12px;\n  display: inline-block;\n  margin-left: 32px;\n  padding: 8px 16px;\n  left: 10px;\n  bottom: 10px;\n  background: #def9d2;\n  cursor: pointer;\n  border-radius: 4px;\n  border: 1px solid #ccc;\n  font-size: 12px;\n  transition: color 0.2s, background 0.2s;\n  text-decoration: none;\n}\n\n.checkout-summary a:hover {\n  background-color: #bfd6b4;\n}\n\n/*# sourceMappingURL=checkout.css.map */\n"

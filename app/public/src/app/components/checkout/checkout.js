@@ -3,12 +3,6 @@ import {Router} from '@angular/router';
 import {CartService} from '../../services/cart.service';
 import {CheckoutItem} from './item/item';
 import {Cookies} from '../../services/cookie.service';
-import {Memoize} from '../../services/memoize.service';
-
-const path = 'public/src/app/components/checkout/';
-
-/*import headerTemplate from 'raw-loader!./checkout.html';
- import headerStyle from 'raw-loader!./checkout.css';*/
 
 @Component({
 	selector: 'checkout',
@@ -26,7 +20,6 @@ export class Checkout {
 	cartService;
 	router;
 	cookies = new Cookies();
-	memoize = new Memoize();
 
 	static get parameters() {
 		return [[CartService], [Router]];
@@ -64,7 +57,6 @@ export class Checkout {
 
 	setPrice() {
 		this.cookies.createCookie('totalCurrency', this.totalCurrency, 1);
-		//this.memoize.set('totalCurrency', this.totalCurrency);
 	}
 }
 

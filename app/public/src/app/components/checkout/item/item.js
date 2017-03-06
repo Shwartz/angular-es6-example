@@ -1,9 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 
-/*import headerTemplate from 'raw-loader!./item.html';
- import headerStyle  from 'raw-loader!./item.css';*/
-
-const path = 'public/src/app/components/checkout/item/';
 const deliveryPrices = {
 	slow: 0.2,
 	medium: 0.3,
