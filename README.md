@@ -4,7 +4,6 @@
 To run server: `$ npm run lite`  
 To start watcher `$ gulp`  
   
-SCSS global will use `$ gulp js-dist`
 
 ## Useful information
 reflect-metadata - [https://www.npmjs.com/package/reflect-metadata]  

@@ -8,9 +8,18 @@ import {FormsModule} from '@angular/forms';
 import {App} from './app';
 import {Heading} from './components/heading/heading';
 import {BreadCrumbs} from './components/bread-crumbs/bread-crumbs';
+import {CartService} from './services/cart.service';
 
 const routes = [
-
+    {
+        path: 'list',
+        component: List
+    },
+    {
+        path: '',
+        redirectTo: '/list',
+        pathMatch: 'full'
+    }
 ];
 
 @NgModule({
@@ -29,7 +38,9 @@ const routes = [
 		FormsModule,
 		HttpModule
 	],
-	providers: []
+	providers: [
+		CartService
+	]
 })
 
 export class AppModule {}
