@@ -28,5 +28,8 @@ Uses Just-in-Time compiler and make's application compile on client-side.
 **Component Relative path in Angular 2**
 [https://blog.thoughtram.io/angular/2016/06/08/component-relative-paths-in-angular-2.html]
 
+**Top ten ES6 features**
+[https://webapplog.com/es6/]
+
 
 
