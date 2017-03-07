@@ -95206,11 +95206,6 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var path = 'public/src/app/components/list/';
-	
-	/*import headerTemplate from 'raw-loader!./list.html';
-	 import headerStyle from 'raw-loader!./list.css';*/
-	
 	var List = exports.List = (_dec = (0, _core.Component)({
 		selector: 'list',
 		template: __webpack_require__(135),
