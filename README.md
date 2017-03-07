@@ -1,6 +1,7 @@
 # Angular 2 template Using ES6, Webpack, Gulp and Babel
 
 ## Development
+CD to app/  
 To run server: `$ npm run lite`  
 To start watcher `$ gulp`  
   
