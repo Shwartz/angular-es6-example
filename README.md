@@ -31,5 +31,12 @@ Uses Just-in-Time compiler and make's application compile on client-side.
 **Top ten ES6 features**
 [https://webapplog.com/es6/]
 
+**Static getter parameters**
+[http://stackoverflow.com/questions/35919593/what-is-static-get-parameters-purpose-in-ionic-2]
+With static getter for parameters you specify injections for your component's constructor  
+It provide Angular with metadata about things it should inject in the constructor  
+
+Angular2 is written in TypeScript, and normally depends on types to know what kind of objects to inject into class constructors as part of its dependency injection framework. Since these examples are in JavaScript and not TypeScript, we need a way to tell Angular what “types” of objects should be injected, without actually using types. The way we do this is with the static getter parameters which attaches this type information to the class.
+
 
 
