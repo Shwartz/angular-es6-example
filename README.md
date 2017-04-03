@@ -5,6 +5,8 @@ CD to app/
 To run server: `$ npm run lite`  
 To start watcher `$ gulp`  
   
+## DEMO
+http://demo.shvarcs.com/
 
 ## Useful information
 reflect-metadata - [https://www.npmjs.com/package/reflect-metadata]  
